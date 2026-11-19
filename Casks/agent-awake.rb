@@ -4,20 +4,15 @@ cask "agent-awake" do
 
   url "https://github.com/emretufekci/agent-awake/releases/download/v#{version}/AgentAwake.zip"
   name "AgentAwake"
-  desc "Keep your Mac awake until your AI coding agents finish, then sleep"
+  desc "Keeps the computer awake until AI coding agents finish, then sleeps"
   homepage "https://github.com/emretufekci/agent-awake"
 
-  depends_on macos: ">= :big_sur"
+  depends_on :macos
 
   app "AgentAwake.app"
 
-  # The app is ad-hoc signed (not notarized); remove the quarantine flag so it opens.
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/AgentAwake.app"]
-  end
-
-  uninstall quit:      "local.agentawake",
-            launchctl: "local.agentawake"
+  uninstall launchctl: "local.agentawake",
+            quit:      "local.agentawake"
 
   zap trash: [
     "~/Library/Application Support/AgentAwake",

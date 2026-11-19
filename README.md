@@ -1,7 +1,9 @@
 # emretufekci/homebrew-tap
 
 ```bash
-brew install --cask emretufekci/tap/agent-awake
+brew tap emretufekci/tap
+brew trust emretufekci/tap   # Homebrew 7+ asks you to trust third-party taps
+brew install --cask agent-awake
 ```
 
 | Cask | Description |
